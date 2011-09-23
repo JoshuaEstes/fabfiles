@@ -1,4 +1,4 @@
-from fabric.api import task,run
+from fabric.api import task,run,cd
 
 code_dir = '/home/sfproject/symfony'
 
