@@ -10,7 +10,8 @@ def log_status():
   with cd(env.deploy_to):
     run('php shell/log.php status')
 
-@task log_clean():
+@task
+def log_clean():
   with cd(env.deploy_to):
     run('php shell/log.php clean')
 
