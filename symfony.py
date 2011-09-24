@@ -1,15 +1,13 @@
 from fabric.api import task,run,cd
 
-code_dir = '/home/sfproject/symfony'
-
 @task(alias='cc')
 def cache_clear():
-  with cd(code_dir):
+  with cd(env.deploy_to):
     run('./symfony cache:clear')
 
 @task
 def doctrine_migrate(version=0):
-  with cd(code_dir):
+  with cd(env.deploy_to):
     if version > 0:
       run('./symfony doctrine:migrate %s' % version)
     else:
@@ -17,7 +15,7 @@ def doctrine_migrate(version=0):
 
 @task
 def project_optimize():
-  with cd(code_dir):
+  with cd(env.deploy_to):
     run('./symfony project:optimize')
 
 @task
