@@ -21,11 +21,16 @@ def indexer(status=False,mode=False,mode_realtime=False,mode_manual=False,reinde
     """
     Run index.php with your options
 
-      status <indexer>            Show Indexer(s) Status
-      mode <indexer>              Show Indexer(s) Index Mode
-      mode_realtime <indexer>     Set index mode type "Update on Save"
-      mode_manual <indexer>       Set index mode type "Manual Update"
-      reindex <indexer>           Reindex Data
+    Options:
+          status='<indexer>'            Show Indexer(s) Status
+          mode='<indexer>'              Show Indexer(s) Index Mode
+          mode_realtime='<indexer>'     Set index mode type "Update on Save"
+          mode_manual='<indexer>'       Set index mode type "Manual Update"
+          reindex='<indexer>'           Reindex Data
+
+    Usage:
+
+        fab production status:status='catalog_url'
     """
     with cd(env.deploy_to):
         if status:
@@ -33,9 +38,9 @@ def indexer(status=False,mode=False,mode_realtime=False,mode_manual=False,reinde
         if mode:
             run('php shell/indexer.php --mode %s' % mode)
         if mode_realtime:
-            run('php shell/indexer.php --mode_realtime %s' % mode_realtime)
+            run('php shell/indexer.php --mode-realtime %s' % mode_realtime)
         if mode_manual:
-            run('php shell/indexer.php --mode_manual %s' % mode_manual)
+            run('php shell/indexer.php --mode-manual %s' % mode_manual)
         if reindex:
             run('php shell/indexer.php --reindex %s' % reindex)
 
